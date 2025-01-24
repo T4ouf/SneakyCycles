@@ -1,0 +1,122 @@
+Jeu inspiré de Tron : 
+	- Moto qui se déplace sur un paysage vu de dessus
+	- Moto peut générer un mur de sa couleur dans sa trainée
+	- tourne en mode micromachine => droite sens horaire - gauche antihoraire
+
+Jeu inspiré du snake :
+	- bouger "difficilement" et éviter les murs (bords de l'écran mais peut-être plus ?)
+
+Jeu Multijoueur :
+	- 8 joueurs par map (joueurs ou bots)
+		- 8 joueurs quoiqu'il arrive (si pas assez humains => programmer bots)
+		- comportement bots à définir :
+			- peut être basique (genre "mouvement brownien/random")
+			- peut être "stratégique"/"algorithmique" (genre les fantômes de pacman)
+			- peut être plus avancé ? (par exemple en fonction du perso MAIS à voir si temps et si on y arrive et si on a des idées ^^)
+		
+	- un peu inspiré du chaos d'un bomberman
+
+Regles :
+	- jeu de survie : dernier en vie gagne la manche
+	- le joueur peut générer un mur de sa couleur dans sa trainée (btn press/maintenu)
+		- mur dure une durée fixe genre 3s (à voir mais potentiellement param du perso)
+		- le joueur a une jauge de mur limité
+			
+			- le joueur peut passer à travers ses murs/sa trainée
+			- (PARAM) taille jauge dépend du personnage 
+			- pour recharger : cercle sur lui-même 
+				- (PARAM) angle max bracage (à quel point ça tourne facilement)
+				- (PARAM) vitesse rechargement jauge
+	
+	- si le joueur se crash dans un mur (autre que les siens) => il meurt
+		- si mur neutre (décors) : juste mort
+		- si mur ennemi : kill pour l'ennemi
+		- à voir mais pour récompenser kill : 5 kills (cumulés intermanche) donne 1 point de manche
+
+	- si 2 joueurs crash l'un dans l'autre : les deux meurent et obtiennent un kill
+
+	- si le joueur est encerclé (DANS UNE BULLE) par les murs d'un autre :
+		- joueur kill par assaillant
+		- assaillant récupère/ajoute la jauge de mur à sa jauge (augmente le max de la jauge pour la manche ou juste refill ?)
+
+	- le 1er à 3 ou 5 ou XX manches gagne
+	- Plusieurs type de personnages avec parametres et design specifiques (details après)
+
+Controles : (aka "le joueur peut...")
+	- Accelerer jusque VitesseMax (si acceleration => moto va à vitesse max après un temps d'accel ?)
+	- freiner jusque VitesseMin (si pas d'input => moto va à vitesse min dans la même dir quoiqu'il arrive => ne peut pas s'arrêter)
+	(- courbe d'acceleration ? - accel/decel fixe ?) 
+	- Tourner (droite sens horaire, gauche sens antihoraire)
+	- laisser un mur dans sa trainée
+
+	=> 5 btns/inputs (jouable clavier&manette)
+
+Paramètres des differents personnages :
+	- VitesseMax
+	- VitesseMin (on ne peut pas s'arrêter ! vitesseMin détermine à quel point un perso est facile à controler => équivalent difficulté dans Snake)
+	- angleBraquage (=angleMax que la moto peut faire en tournant => la rendant plus ou moins maniable et facile de faire des tours)
+		- par exemple si angleMax=10° => elle va galérer de ouf pour tourner/il lui faudra de la place
+		- par exemple si angleMax=90° => la moto va faire des carrés (à la tron : déplacements rectilignes)
+		- NOTE : pas d'angle min puisque jeu sur clavier possible (pas de valeur analogique) => deplacement frame = speed * angleMax (vitesse angulaire en quelque sorte)
+
+	- Taille du réservoir/de la jauge de murs
+	- Durée de vie de la trainée/du mur
+
+
+Idee persos :
+	- Velo (/velo electique)
+	- Mobilette
+	- Scooter
+	- Moto cross
+	- Moto basique
+	- Moto Biker
+	- Moto GP
+	- Moto Tron (futuriste)
+	
+
+Idee design :
+	- esthétique néon pour les murs 
+		- glow ?
+		- bordure opaque, intérieur semi-transparent
+		- à voir comme afficher (juste un trait ou perspective un peu penchée ?)
+
+	- chaque perso doit avoir 8 color swap possibles (on peut tous prendre le même perso) => avoir un élement très coloré sur chaque perso/moto que l'on pourra facilement color swap
+	- 8 couleurs = 1 par joueur (fixe et def à l'avance)
+	- idées niveaux :
+		- 1 niveau basique : juste les contours sont des murs
+
+	- idées ambiances niveaux : 
+		- 1 niveau ambiance hotline miami
+		- 1 niveau ambiance chiptune/8-bit/16-bit (messenger-esque)
+		- 1 niveau ambiance futuriste (tron-esque)
+		- 1 niveau ambiance ville américaine (quadrillage carré par endroits)
+
+
+Idee visuelle :
+	- Perso/Moto lié à un serpent chacune ? (snake et tron ensemble)
+	- Moto laisse toute petite fumée animée derrière elle ?
+
+
+Idee sonore :
+	- chaque moto fait un bruit different en avancant (bruit "moteur")
+
+
+Prototypage :
+	- les differentes motos peuvent être des formes abstraites (triangle, rond, carre) pour ne pas attendre le design
+	- Système de Load les paramètres de chaque perso au runtime (plus facile pour équilibrer) -> 1 JSON/perso
+
+Scenes à faire :
+	- Main Menu
+	- How To Play (règles + touches)
+	- Selection Map
+	- Selection Perso
+	- Chaque niveau
+
+
+SI TEMPS : 
+	- Surface de route (change la physique)
+		- béton -> normale
+		- glace -> acceleration&deceleration lente, tourner beaucoup plus facile, "glissade"
+		- Plastique -> accelaration&deceleration élévée (on arrive vite max speed et on s'arrête fort), tourner plus facile, "glissade"
+		- eau -> mort instantannée (on ne peut pas rouler dans l'eau)
+		- herbe/terre -> vitesse max lente, tourner difficile

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhtgtu0w6mwwl"]
+
+[ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
+[ext_resource type="Texture2D" uid="uid://0lut45jnfgho" path="res://art/characters/6_basic_moto/char_moto.png" id="2_67g4q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yslle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_67g4q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao75b"]
+radius = 11.0
+height = 74.0
+
+[node name="player" type="Area2D"]
+position = Vector2(400, 400)
+script = ExtResource("1_nl34a")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_yslle")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ao75b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

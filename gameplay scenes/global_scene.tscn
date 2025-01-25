@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://kba5f07v88st"]
+
+[ext_resource type="Script" path="res://script/global_scene.gd" id="1_r6sk2"]
+[ext_resource type="PackedScene" uid="uid://bwgma037dclg3" path="res://UI scenes/main_menu.tscn" id="2_mmk77"]
+[ext_resource type="PackedScene" uid="uid://c6ug1uxhdxgs5" path="res://UI scenes/how_to_play.tscn" id="3_rh3un"]
+[ext_resource type="PackedScene" uid="uid://xrarv5c84to2" path="res://UI scenes/level_selection.tscn" id="4_5gore"]
+[ext_resource type="PackedScene" uid="uid://df7maqey7el" path="res://UI scenes/character_selection.tscn" id="5_a6e5u"]
+
+[node name="global scene" type="Node"]
+script = ExtResource("1_r6sk2")
+
+[node name="main menu" parent="." instance=ExtResource("2_mmk77")]
+
+[node name="how to play" parent="." instance=ExtResource("3_rh3un")]
+
+[node name="level selection" parent="." instance=ExtResource("4_5gore")]
+
+[node name="character selection" parent="." instance=ExtResource("5_a6e5u")]

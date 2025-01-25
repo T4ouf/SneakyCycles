@@ -1,15 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=5 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
-[ext_resource type="Texture2D" uid="uid://0lut45jnfgho" path="res://art/characters/6_basic_moto/char_moto.png" id="2_67g4q"]
-[ext_resource type="Texture2D" uid="uid://cc7n7v1lkgixi" path="res://art/circle_gauge.png" id="3_lfero"]
-[ext_resource type="Texture2D" uid="uid://bsviadoqfdfeq" path="res://art/cercle.png" id="4_68rd0"]
+[ext_resource type="Texture2D" uid="uid://b3jmxckgog1lx" path="res://art/circle_gauge.png" id="3_lfero"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yslle"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_67g4q")
+"texture": null
 }],
 "loop": true,
 "name": &"default",
@@ -52,7 +50,6 @@ tint_under = Color(0, 0, 0, 1)
 
 [node name="drift_particles" type="CPUParticles2D" parent="."]
 lifetime = 0.45
-texture = ExtResource("4_68rd0")
 spread = 12.27
 gravity = Vector2(0, 0)
 scale_amount_min = 0.01

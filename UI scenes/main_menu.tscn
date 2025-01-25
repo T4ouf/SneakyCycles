@@ -40,7 +40,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "Choose level"
 script = ExtResource("1_76j14")
-target_scene = "UI scenes/level_selection.tscn"
+target_scene = "level selection"
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="."]
@@ -68,7 +68,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "How to play"
 script = ExtResource("1_76j14")
-target_scene = "UI scenes/how_to_play.tscn"
+target_scene = "how to play"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="choose level button" to="choose level button" method="_on_button_down"]

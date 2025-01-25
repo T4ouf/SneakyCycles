@@ -7,7 +7,8 @@
 			"maxSpeed": 15,
 			"steeringMaxAngleDeg":70,
 			"discreteRotation": false,
-			"trailGaugeSize" : 300
+			"trailGaugeSize" : 300,
+			"texture": "art/characters/1_bike/char_bike.png"
 		},
 		{
 			"id":1,
@@ -16,7 +17,8 @@
 			"maxSpeed": 50,
 			"steeringMaxAngleDeg":60,
 			"discreteRotation": false,
-			"trailGaugeSize" : 200
+			"trailGaugeSize" : 200,
+			"texture": "art/characters/2_moped/char_moped.png"
 		},
 		{
 			"id":2,
@@ -25,7 +27,8 @@
 			"maxSpeed": 50,
 			"steeringMaxAngleDeg":70,
 			"discreteRotation": false,
-			"wallGaugeSize" : 200
+			"trailGaugeSize" : 200,
+			"texture": "art/characters/3_scooter/char_scooter.png"
 		},
 		{
 			"id":3,
@@ -34,7 +37,8 @@
 			"maxSpeed": 70,
 			"steeringMaxAngleDeg":50,
 			"discreteRotation": false,
-			"wallGaugeSize" : 150
+			"trailGaugeSize" : 150,
+			"texture": "art/characters/4_moto_cross/moto_cross.png"
 		},
 		{
 			"id":4,
@@ -43,7 +47,8 @@
 			"maxSpeed": 100,
 			"steeringMaxAngleDeg":40,
 			"discreteRotation": false,
-			"trailGaugeSize" : 100
+			"trailGaugeSize" : 100,
+			"texture": "art/characters/5_basic_moto/char_moto.png"
 		},
 		{
 			"id":5,
@@ -52,7 +57,8 @@
 			"maxSpeed": 100,
 			"steeringMaxAngleDeg":15,
 			"discreteRotation": false,
-			"trailGaugeSize" : 200
+			"trailGaugeSize" : 200,
+			"texture": "art/characters/5_basic_moto/char_moto.png"
 		},
 		{
 			"id":6,
@@ -61,7 +67,8 @@
 			"maxSpeed": 200,
 			"steeringMaxAngleDeg":60,
 			"discreteRotation": false,
-			"wallGaugeSize" : 100
+			"trailGaugeSize" : 100,
+			"texture": "art/characters/5_basic_moto/char_moto.png"
 		},
 		{
 			"id":7,
@@ -70,7 +77,8 @@
 			"maxSpeed": 70,
 			"steeringMaxAngleDeg":90,
 			"discreteRotation": true,
-			"wallGaugeSize" : 150
+			"trailGaugeSize" : 150,
+			"texture": "art/characters/5_basic_moto/char_moto.png"
 		}
 	]
 }

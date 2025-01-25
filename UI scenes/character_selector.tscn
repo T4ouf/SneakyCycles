@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dce8fbk8e2qxl"]
+
+[ext_resource type="Script" path="res://script/characterSelector.gd" id="1_ybtfq"]
+[ext_resource type="PackedScene" uid="uid://bg4ibb12eh4m4" path="res://UI scenes/stat_label.tscn" id="2_vlwgm"]
+
+[node name="character selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ybtfq")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="thumbnail" type="TextureRect" parent="container"]
+layout_mode = 2
+expand_mode = 5
+
+[node name="character name" type="Label" parent="container"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="min speed stat" parent="container" instance=ExtResource("2_vlwgm")]
+layout_mode = 2
+size_flags_vertical = 3
+stat_name = "min speed"
+
+[node name="max speed stat" parent="container" instance=ExtResource("2_vlwgm")]
+layout_mode = 2
+size_flags_vertical = 3
+stat_name = "max speed"
+
+[node name="steering stat" parent="container" instance=ExtResource("2_vlwgm")]
+layout_mode = 2
+size_flags_vertical = 3
+stat_name = "maniability"
+
+[node name="trail size stat" parent="container" instance=ExtResource("2_vlwgm")]
+layout_mode = 2
+size_flags_vertical = 3
+stat_name = "trail"

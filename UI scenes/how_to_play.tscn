@@ -32,6 +32,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Back"
 script = ExtResource("2_sf5de")
-target_scene = "UI scenes/main_menu.tscn"
+target_scene = "main menu"
 
 [connection signal="button_down" from="back button" to="back button" method="_on_button_down"]

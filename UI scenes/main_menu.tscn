@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwgma037dclg3"]
+[gd_scene load_steps=4 format=3 uid="uid://bwgma037dclg3"]
 
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="1_76j14"]
 [ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_gekbv"]
+[ext_resource type="FontFile" uid="uid://b73tqf2jkylwj" path="res://fonts/BamboyTrial-Regular.otf" id="2_2lpxt"]
 
 [node name="main menu" type="Control"]
 layout_mode = 3
@@ -37,6 +38,7 @@ anchor_top = 0.362654
 anchor_right = 0.581597
 anchor_bottom = 0.439815
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2lpxt")
 theme_override_font_sizes/font_size = 30
 text = "Choose level"
 script = ExtResource("1_76j14")
@@ -51,6 +53,7 @@ anchor_top = 0.12037
 anchor_right = 0.646267
 anchor_bottom = 0.226852
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2lpxt")
 theme_override_font_sizes/font_size = 50
 text = "Sneaky Cycles"
 horizontal_alignment = 1
@@ -65,6 +68,7 @@ anchor_top = 0.521605
 anchor_right = 0.578125
 anchor_bottom = 0.598765
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2lpxt")
 theme_override_font_sizes/font_size = 30
 text = "How to play"
 script = ExtResource("1_76j14")

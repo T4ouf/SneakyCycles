@@ -11,11 +11,11 @@ func _ready() -> void:
 func _process(delta:float) -> void:
 	pass
 
-func _on_trail_dropped(player:Area2D, trail_lifespan:float, p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2) -> void:
+func _on_trail_dropped(player:Area2D, trail_lifespan:float, angle:float) -> void:
 	var trail : Node = trail_scene.instantiate()
-	trail.position = player.position
+	trail.position = player.position#  - Vector2(10 * cos(player.rotation), 10 * sin(player.rotation)) # Wont work, I think the images are not centered
 	trail.get_child(0).wait_time = trail_lifespan
-	#trail.get_child(2).polygon = PackedVector2Array([p1, p2, p3, p4])
+	#trail.get_child(1).rotation = angle
 	add_child(trail)
 
 

@@ -1,9 +1,18 @@
 extends Area2D
 
+const gauge_consumption : float = 0.5
+
+# TODO:
+# - Recharging gauge
+# 	- takes a small amount of time to start up (like making a full turn)
+# - Capturing other player entities
+#	- First : A stopped trail can no longer capture someone
+#	- Second : The trail can only capture if it intersects with itself
+
 const trail_width : float = 5
 
 signal hit
-signal trail_dropped(player:Area2D, trail_timer:int,  p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2)
+signal trail_dropped(player:Area2D, trail_timer:int,  angle : float)
 var screen_size : Vector2 # window size
 
 var health : int = 3
@@ -13,72 +22,89 @@ var max_speed : float = 6
 var trail_lifespan : float = 2
 # in degree
 var steering_angle : float = 200
-var trail_gauge_size : float = 0
+var trail_gauge_size : float = 100
 var discrete_rotation : float = false
 
 @export var is_bot : bool = false
 
 var angle : float = 0
 var speed : float = 0
-var trail_gauge : float = 10
-
-var last_p1 : Vector2
-var last_p2 : Vector2
+var is_trailing : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size  = get_viewport_rect().size
 	steering_angle = deg_to_rad(steering_angle) / 60
+	$trail_gauge.max_value = trail_gauge_size
+	$trail_gauge.value = trail_gauge_size
 	# hide()
+
+func advance()->void:
+	position += speed * Vector2.from_angle(angle)
+	position = position.clamp(Vector2.ZERO, screen_size) # Locks the position to a domain, here the screen dimensions
+
+func turn_right()->void:
+	angle += steering_angle
+	$sprite.rotation = angle
+	#TODO : plug to gauge recharge, given the right conditions
+	recharge_trail()
+
+func turn_left()->void:
+	angle -= steering_angle
+	$sprite.rotation = angle
+	#TODO : plug to gauge recharge, given the right conditions
+	recharge_trail()
+
+func place_trail()->void:
+	trail_dropped.emit(self, trail_lifespan, angle)
+	$trail_gauge.value -= gauge_consumption
+
+func recharge_trail()->void:
+	if not is_trailing:
+		$trail_gauge.value += 1
 
 func _bot_process()->void:
 	speed = (max_speed + min_speed) / 2
-	angle += steering_angle
-	position += speed * Vector2.from_angle(angle)
-	$sprite.rotation = angle
-	position = position.clamp(Vector2.ZERO, screen_size) # Locks the position to a domain, here the screen dimensions
+	turn_right()
+	advance()
 
-	trail_dropped.emit(self, trail_lifespan, Vector2.ZERO, Vector2.ZERO, Vector2.ZERO, Vector2.ZERO)
+	trail_dropped.emit(self, trail_lifespan, angle)
 	
 func _player_process()->void:
 	if discrete_rotation:
 		if Input.is_action_just_pressed("move_right"):
-			angle += steering_angle
+			turn_right()
 		if Input.is_action_just_pressed("move_left"):
-			angle -= steering_angle
+			turn_left()
+			
+		speed = (max_speed + min_speed) / 2
+		
 		if Input.is_action_just_pressed("accelerate"):
 			speed = max_speed
-		elif Input.is_action_just_pressed("decelerate"):
+		if Input.is_action_just_pressed("decelerate"):
 			speed = min_speed
-		else:
-			speed = (max_speed + min_speed) / 2
 
 	else:
 		if Input.is_action_pressed("move_right"):
-			angle += steering_angle
+			turn_right()
 		if Input.is_action_pressed("move_left"):
-			angle -= steering_angle
+			turn_left()
+		
+		speed = (max_speed + min_speed) / 2
+		
 		if Input.is_action_pressed("accelerate"):
 			speed = max_speed
-		elif Input.is_action_pressed("decelerate"):
+		if Input.is_action_pressed("decelerate"):
 			speed = min_speed
-		else:
-			speed = (max_speed + min_speed) / 2
 
-	position += speed * Vector2.from_angle(angle)
-	$sprite.rotation = angle
-	position = position.clamp(Vector2.ZERO, screen_size) # Locks the position to a domain, here the screen dimensions
-	
-	var orth_vec : Vector2 = Vector2(cos(angle + PI / 2) * trail_width / 2, sin(angle + PI /2) * trail_width / 2)
-	var p1 : Vector2 = position + orth_vec
-	var p2 : Vector2 = position - orth_vec
+	advance()
 
-	if Input.is_action_pressed("drop_trail") and trail_gauge > 0:
-		trail_dropped.emit(self, trail_lifespan, last_p1, last_p2, p2, p1)
-	
-	last_p1 = p1
-	last_p2 = p2
-	
+	if Input.is_action_pressed("drop_trail") and $trail_gauge.value > 0:
+		is_trailing = true
+		place_trail()
+	else:
+		is_trailing = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	

@@ -1,15 +1,15 @@
 extends Area2D
 
 const gauge_consumption : float = 0.5
+const gauge_recharge : float = 0.7
+const gauge_cooldown : float = 2
 
 # TODO:
 # - Recharging gauge
-# 	- takes a small amount of time to start up (like making a full turn)
+# 	- takes a small amount of time to start up : making a 1/3rd turn
 # - Capturing other player entities
 #	- First : A stopped trail can no longer capture someone
 #	- Second : The trail can only capture if it intersects with itself
-
-const trail_width : float = 5
 
 signal hit
 signal trail_dropped(player:Area2D, trail_timer:int,  angle : float)
@@ -29,14 +29,16 @@ var discrete_rotation : float = false
 
 var angle : float = 0
 var speed : float = 0
-var is_trailing : bool = false
+var is_on_cooldown : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size  = get_viewport_rect().size
 	steering_angle = deg_to_rad(steering_angle) / 60
+	is_on_cooldown = false
 	$trail_gauge.max_value = trail_gauge_size
 	$trail_gauge.value = trail_gauge_size
+	$recharge_cooldown.wait_time = gauge_cooldown
 	# hide()
 
 func advance()->void:
@@ -55,13 +57,17 @@ func turn_left()->void:
 	#TODO : plug to gauge recharge, given the right conditions
 	recharge_trail()
 
+func _on_recharge_cooldown_timeout()->void:
+	is_on_cooldown = false;
+
 func place_trail()->void:
 	trail_dropped.emit(self, trail_lifespan, angle)
 	$trail_gauge.value -= gauge_consumption
+	$recharge_cooldown.start()
 
 func recharge_trail()->void:
-	if not is_trailing:
-		$trail_gauge.value += 1
+	if not is_on_cooldown:
+		$trail_gauge.value += gauge_recharge
 
 func _bot_process()->void:
 	speed = (max_speed + min_speed) / 2
@@ -100,10 +106,8 @@ func _player_process()->void:
 	advance()
 
 	if Input.is_action_pressed("drop_trail") and $trail_gauge.value > 0:
-		is_trailing = true
+		is_on_cooldown = true
 		place_trail()
-	else:
-		is_trailing = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -116,4 +120,3 @@ func _process(delta: float) -> void:
 # TODO
 func _on_body_entered(body: Node2D) -> void:
 	hit.emit()
-

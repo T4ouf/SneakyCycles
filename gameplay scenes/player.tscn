@@ -44,4 +44,7 @@ texture_under = ExtResource("3_lfero")
 texture_progress = ExtResource("3_lfero")
 tint_under = Color(0, 0, 0, 1)
 
+[node name="recharge_cooldown" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="recharge_cooldown" to="." method="_on_recharge_cooldown_timeout"]

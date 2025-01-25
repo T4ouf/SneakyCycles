@@ -1,0 +1,76 @@
+{
+	"characters": [
+		{
+			"id":0,
+			"name":"bicycle",
+			"minSpeed": 10,
+			"maxSpeed": 15,
+			"steeringMaxAngleDeg":70,
+			"discreteRotation": false,
+			"trailGaugeSize" : 300
+		},
+		{
+			"id":1,
+			"name":"moped",
+			"minSpeed": 10,
+			"maxSpeed": 50,
+			"steeringMaxAngleDeg":60,
+			"discreteRotation": false,
+			"trailGaugeSize" : 200
+		},
+		{
+			"id":2,
+			"name":"scooter",
+			"minSpeed": 20,
+			"maxSpeed": 50,
+			"steeringMaxAngleDeg":70,
+			"discreteRotation": false,
+			"wallGaugeSize" : 200
+		},
+		{
+			"id":3,
+			"name":"moto_cross",
+			"minSpeed": 50,
+			"maxSpeed": 70,
+			"steeringMaxAngleDeg":50,
+			"discreteRotation": false,
+			"wallGaugeSize" : 150
+		},
+		{
+			"id":4,
+			"name":"moto_basic",
+			"minSpeed": 50,
+			"maxSpeed": 100,
+			"steeringMaxAngleDeg":40,
+			"discreteRotation": false,
+			"trailGaugeSize" : 100
+		},
+		{
+			"id":5,
+			"name":"moto_biker",
+			"minSpeed": 20,
+			"maxSpeed": 100,
+			"steeringMaxAngleDeg":15,
+			"discreteRotation": false,
+			"trailGaugeSize" : 200
+		},
+		{
+			"id":6,
+			"name":"moto_GP",
+			"minSpeed": 100,
+			"maxSpeed": 200,
+			"steeringMaxAngleDeg":60,
+			"discreteRotation": false,
+			"wallGaugeSize" : 100
+		},
+		{
+			"id":7,
+			"name":"moto_Tron",
+			"minSpeed": 50,
+			"maxSpeed": 70,
+			"steeringMaxAngleDeg":90,
+			"discreteRotation": true,
+			"wallGaugeSize" : 150
+		}
+	]
+}

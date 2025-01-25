@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwgma037dclg3"]
+
+[ext_resource type="Script" path="res://script/changeSceneButton.gd" id="1_76j14"]
+[ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_gekbv"]
+
+[node name="main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gekbv")
+
+[node name="choose level button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.418403
+anchor_top = 0.362654
+anchor_right = 0.581597
+anchor_bottom = 0.439815
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Choose level"
+script = ExtResource("1_76j14")
+target_scene = "UI scenes/level_selection.tscn"
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.353733
+anchor_top = 0.12037
+anchor_right = 0.646267
+anchor_bottom = 0.226852
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Sneaky Cycles"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="how to play button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.521605
+anchor_right = 0.578125
+anchor_bottom = 0.598765
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "How to play"
+script = ExtResource("1_76j14")
+target_scene = "UI scenes/how_to_play.tscn"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="choose level button" to="choose level button" method="_on_button_down"]
+[connection signal="button_down" from="how to play button" to="how to play button" method="_on_button_down"]

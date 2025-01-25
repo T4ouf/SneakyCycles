@@ -64,14 +64,14 @@ Paramètres des differents personnages :
 
 
 Idee persos :
-	- Velo (/velo electique)
-	- Mobilette
-	- Scooter
-	- Moto cross
-	- Moto basique
-	- Moto Biker
-	- Moto GP
-	- Moto Tron (futuriste)
+	1- Velo (/velo electique)
+	2- Mobilette
+	3- Scooter
+	4- Moto cross
+	5- Moto basique
+	6- Moto Biker
+	7- Moto GP
+	8- Moto Tron (futuriste)
 	
 
 Idee design :

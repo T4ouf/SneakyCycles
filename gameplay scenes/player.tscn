@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=7 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
 [ext_resource type="Texture2D" uid="uid://0lut45jnfgho" path="res://art/characters/6_basic_moto/char_moto.png" id="2_67g4q"]
 [ext_resource type="Texture2D" uid="uid://cc7n7v1lkgixi" path="res://art/circle_gauge.png" id="3_lfero"]
+[ext_resource type="Texture2D" uid="uid://bsviadoqfdfeq" path="res://art/cercle.png" id="4_68rd0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yslle"]
 animations = [{
@@ -24,6 +25,7 @@ position = Vector2(400, 400)
 script = ExtResource("1_nl34a")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+z_index = 3
 scale = Vector2(0.055, 0.055)
 sprite_frames = SubResource("SpriteFrames_yslle")
 
@@ -31,8 +33,10 @@ sprite_frames = SubResource("SpriteFrames_yslle")
 position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ao75b")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="trail_gauge" type="TextureProgressBar" parent="."]
+z_index = 2
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 1768.0
@@ -45,6 +49,14 @@ texture_progress = ExtResource("3_lfero")
 tint_under = Color(0, 0, 0, 1)
 
 [node name="recharge_cooldown" type="Timer" parent="."]
+
+[node name="drift_particles" type="CPUParticles2D" parent="."]
+lifetime = 0.45
+texture = ExtResource("4_68rd0")
+spread = 12.27
+gravity = Vector2(0, 0)
+scale_amount_min = 0.01
+scale_amount_max = 0.05
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="recharge_cooldown" to="." method="_on_recharge_cooldown_timeout"]

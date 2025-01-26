@@ -1,53 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=6 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
 [ext_resource type="Texture2D" uid="uid://cm73lifhoannf" path="res://art/cercle2.png" id="3_355xy"]
-[ext_resource type="Shader" path="res://script/trail.gdshader" id="3_rl8sd"]
-[ext_resource type="Texture2D" uid="uid://qy3ypswllcgj" path="res://art/explosion/explosion_0.png" id="5_tbj46"]
+[ext_resource type="Script" path="res://script/AI_behaviour.gd" id="4_8hv0n"]
 [ext_resource type="Texture2D" uid="uid://ct71gdelcg63k" path="res://art/gauge_small_filled.png" id="5_wymrf"]
-[ext_resource type="Texture2D" uid="uid://b8dkixh0tuoc3" path="res://art/explosion/explosion_1.png" id="6_37d11"]
-[ext_resource type="Texture2D" uid="uid://dej8qbo8m58vk" path="res://art/explosion/explosion_2.png" id="7_aod6a"]
-[ext_resource type="Texture2D" uid="uid://doj5xmoecumxe" path="res://art/explosion/explosion_3.png" id="8_e3l2n"]
-[ext_resource type="Texture2D" uid="uid://b8lx5i2alsq5b" path="res://art/explosion/explosion_4.png" id="9_j7466"]
-[ext_resource type="AudioStream" uid="uid://cy3qlsa4vqlvr" path="res://audio/sfx/explosion.mp3" id="10_7p5tt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao75b"]
 radius = 20.0
 height = 84.001
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkibf"]
-resource_local_to_scene = true
-shader = ExtResource("3_rl8sd")
-shader_parameter/color = null
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0oqrl"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_tbj46")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_37d11")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_aod6a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_e3l2n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_j7466")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"explosion",
-"speed": 15.0
-}]
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(400, 400)
@@ -79,7 +39,6 @@ tint_under = Color(0, 0, 0, 1)
 one_shot = true
 
 [node name="drift_particles" type="CPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_kkibf")
 lifetime = 0.45
 texture = ExtResource("3_355xy")
 spread = 12.27
@@ -90,18 +49,7 @@ scale_amount_max = 0.05
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 
-[node name="explosionAnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-8.00002, 3.99999)
-scale = Vector2(0.22, 0.22)
-sprite_frames = SubResource("SpriteFrames_0oqrl")
-animation = &"explosion"
+[node name="AI" type="Node" parent="."]
+script = ExtResource("4_8hv0n")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-autoplay = true
-
-[node name="explosion" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_7p5tt")
-
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="recharge_cooldown" to="." method="_on_recharge_cooldown_timeout"]
-[connection signal="animation_finished" from="explosionAnimatedSprite" to="." method="_on_explosion_animated_sprite_animation_finished"]

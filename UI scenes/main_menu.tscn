@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwgma037dclg3"]
+[gd_scene load_steps=4 format=3 uid="uid://bwgma037dclg3"]
 
+[ext_resource type="Script" path="res://script/main_menu.gd" id="1_25axa"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="1_76j14"]
 [ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_gekbv"]
 
@@ -12,6 +13,7 @@ offset_left = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_25axa")
 
 [node name="background" type="TextureRect" parent="."]
 z_index = -1
@@ -37,6 +39,9 @@ anchor_top = 0.362654
 anchor_right = 0.581597
 anchor_bottom = 0.439815
 grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../how to play button")
+focus_next = NodePath("../how to play button")
+focus_previous = NodePath("../how to play button")
 theme_override_font_sizes/font_size = 30
 text = "Choose level"
 script = ExtResource("1_76j14")
@@ -65,11 +70,15 @@ anchor_top = 0.521605
 anchor_right = 0.578125
 anchor_bottom = 0.598765
 grow_horizontal = 2
+focus_neighbor_top = NodePath("../choose level button")
+focus_next = NodePath("../choose level button")
+focus_previous = NodePath("../choose level button")
 theme_override_font_sizes/font_size = 30
 text = "How to play"
 script = ExtResource("1_76j14")
 target_scene = "how to play"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_down" from="choose level button" to="choose level button" method="_on_button_down"]
 [connection signal="button_down" from="how to play button" to="how to play button" method="_on_button_down"]

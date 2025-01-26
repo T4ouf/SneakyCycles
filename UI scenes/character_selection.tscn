@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://df7maqey7el"]
+[gd_scene load_steps=6 format=3 uid="uid://df7maqey7el"]
 
+[ext_resource type="Script" path="res://script/character_selection.gd" id="1_f1h2c"]
 [ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_rjrab"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="2_vlmpn"]
 [ext_resource type="PackedScene" uid="uid://dce8fbk8e2qxl" path="res://UI scenes/character_selector.tscn" id="3_0ojlf"]
+
+[sub_resource type="Theme" id="Theme_sfitp"]
 
 [node name="character selection" type="Control"]
 layout_mode = 3
@@ -11,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f1h2c")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -31,6 +35,10 @@ texture = ExtResource("1_rjrab")
 layout_mode = 1
 offset_right = 45.0
 offset_bottom = 31.0
+focus_neighbor_right = NodePath("../MarginContainer/container/character 1")
+focus_neighbor_bottom = NodePath("../MarginContainer/container/character 1")
+focus_next = NodePath("../MarginContainer/container/character 1")
+focus_previous = NodePath("../start game button")
 text = "Back"
 script = ExtResource("2_vlmpn")
 target_scene = "level selection"
@@ -40,63 +48,91 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 100
 
 [node name="container" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 100
+theme_override_constants/v_separation = 50
 columns = 4
 
 [node name="character 1" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+focus_neighbor_right = NodePath("../character 2")
+focus_neighbor_bottom = NodePath("../character 5")
+focus_next = NodePath("../character 2")
+focus_previous = NodePath("../../../back button")
 
 [node name="character 2" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-current_character_id = 1
+focus_neighbor_left = NodePath("../character 1")
+focus_neighbor_right = NodePath("../character 3")
+focus_neighbor_bottom = NodePath("../character 6")
+focus_next = NodePath("../character 3")
+focus_previous = NodePath("../character 1")
+theme = SubResource("Theme_sfitp")
+player_id = 1
 
 [node name="character 3" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-current_character_id = 2
+focus_neighbor_left = NodePath("../character 2")
+focus_neighbor_right = NodePath("../character 4")
+focus_neighbor_bottom = NodePath("../character 7")
+focus_next = NodePath("../character 4")
+focus_previous = NodePath("../character 2")
+player_id = 2
 
 [node name="character 4" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-current_character_id = 3
+focus_neighbor_left = NodePath("../character 3")
+focus_neighbor_bottom = NodePath("../character 8")
+focus_next = NodePath("../character 5")
+focus_previous = NodePath("../character 3")
+player_id = 3
 
 [node name="character 5" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-current_character_id = 4
+focus_neighbor_top = NodePath("../character 1")
+focus_neighbor_right = NodePath("../character 6")
+focus_neighbor_bottom = NodePath("../../../start game button")
+focus_next = NodePath("../character 6")
+focus_previous = NodePath("../character 4")
+player_id = 4
 
 [node name="character 6" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+focus_neighbor_left = NodePath("../character 5")
+focus_neighbor_top = NodePath("../character 2")
+focus_neighbor_right = NodePath("../character 7")
+focus_neighbor_bottom = NodePath("../../../start game button")
+focus_next = NodePath("../character 7")
+focus_previous = NodePath("../character 5")
+player_id = 5
 
 [node name="character 7" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+focus_neighbor_left = NodePath("../character 6")
+focus_neighbor_top = NodePath("../character 3")
+focus_neighbor_right = NodePath("../character 8")
+focus_neighbor_bottom = NodePath("../../../start game button")
+focus_next = NodePath("../character 8")
+focus_previous = NodePath("../character 6")
+player_id = 6
 
 [node name="character 8" parent="MarginContainer/container" instance=ExtResource("3_0ojlf")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+focus_neighbor_left = NodePath("../character 7")
+focus_neighbor_top = NodePath("../character 4")
+focus_neighbor_bottom = NodePath("../../../start game button")
+focus_next = NodePath("../../../start game button")
+focus_previous = NodePath("../character 7")
+player_id = 7
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -109,4 +145,20 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "Choose your vehicles"
 
+[node name="start game button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.925
+anchor_right = 0.5
+anchor_bottom = 0.975
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../MarginContainer/container/character 6")
+focus_next = NodePath("../back button")
+focus_previous = NodePath("../MarginContainer/container/character 8")
+theme_override_font_sizes/font_size = 20
+text = "Start game"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_down" from="back button" to="back button" method="_on_button_down"]

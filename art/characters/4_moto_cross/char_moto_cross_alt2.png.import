@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dytgua86m53hn"
-path="res://.godot/imported/moto_cross_alt5.png-af8f01aa2bb705887770f6640e556187.ctex"
+uid="uid://dswu0prsgjpqr"
+path="res://.godot/imported/char_moto_cross_alt2.png-8335b5618cfe58cfa0a0998c153feaed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/4_moto_cross/moto_cross_alt5.png"
-dest_files=["res://.godot/imported/moto_cross_alt5.png-af8f01aa2bb705887770f6640e556187.ctex"]
+source_file="res://art/characters/4_moto_cross/char_moto_cross_alt2.png"
+dest_files=["res://.godot/imported/char_moto_cross_alt2.png-8335b5618cfe58cfa0a0998c153feaed.ctex"]
 
 [params]
 

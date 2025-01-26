@@ -34,10 +34,13 @@ static func loadCharacterDataFromJSON(path:String) -> void:
 			c.steering_max_angle = deg_to_rad(character.steeringMaxAngleDeg)
 			c.trail_gauge_size = character.trailGaugeSize
 			c.discrete_rotation = character.discreteRotation
-			c.texture = load("res://" + character.texture)
+			for i: int in range(8):
+				c.chromas.push_back(load("res://{0}/char_{1}_alt{2}.png".format([character.textureDir, character.textureName, i])))
 			characters.push_back(c)
 
 			# set limits
+			CharacterData.speed_limits = _minmaxi(CharacterData.speed_limits, c.min_speed)
+			CharacterData.speed_limits = _minmaxi(CharacterData.speed_limits, c.max_speed)
 			CharacterData.min_speed_limits = _minmaxi(CharacterData.min_speed_limits, c.min_speed)
 			CharacterData.max_speed_limits = _minmaxi(CharacterData.max_speed_limits, c.max_speed)
 			CharacterData.steering_max_angle_limits = _minmaxf(CharacterData.steering_max_angle_limits, c.steering_max_angle)
@@ -52,4 +55,3 @@ static func _minmaxi(a: Vector2i, b: int) -> Vector2i:
 
 static func _minmaxf(a: Vector2, b: float) -> Vector2:
 	return Vector2(minf(a.x, b), maxf(a.y, b))
-

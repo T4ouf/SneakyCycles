@@ -7,11 +7,10 @@ class_name CharacterData extends Node
 @export var steering_max_angle: float = 70
 @export var trail_gauge_size: float = 200
 @export var discrete_rotation: bool = false
-var texture: Texture2D
+var chromas: Array[Texture2D] = []
 
+static var speed_limits: Vector2i
 static var min_speed_limits: Vector2i
 static var max_speed_limits: Vector2i
 static var steering_max_angle_limits: Vector2
 static var trail_gauge_size_limits: Vector2
-
-

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba1nu2m3ty25s"
-path="res://.godot/imported/moto_cross_alt0.png-3a01e68c28fa29f3fe9f41441edc26d8.ctex"
+path="res://.godot/imported/char_moto_cross_alt0.png-f6f92f7163b55479173327562195413a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/characters/4_moto_cross/moto_cross_alt0.png"
-dest_files=["res://.godot/imported/moto_cross_alt0.png-3a01e68c28fa29f3fe9f41441edc26d8.ctex"]
+source_file="res://art/characters/4_moto_cross/char_moto_cross_alt0.png"
+dest_files=["res://.godot/imported/char_moto_cross_alt0.png-f6f92f7163b55479173327562195413a.ctex"]
 
 [params]
 

@@ -1,27 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dce8fbk8e2qxl"]
+[gd_scene load_steps=4 format=3 uid="uid://dce8fbk8e2qxl"]
 
 [ext_resource type="Script" path="res://script/characterSelector.gd" id="1_ybtfq"]
+[ext_resource type="Script" path="res://script/character_selector_inner.gd" id="2_hudc2"]
 [ext_resource type="PackedScene" uid="uid://bg4ibb12eh4m4" path="res://UI scenes/stat_label.tscn" id="2_vlwgm"]
 
-[node name="character selector" type="Control"]
-layout_mode = 3
+[node name="character_selector" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
 script = ExtResource("1_ybtfq")
 
 [node name="container" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 25
+script = ExtResource("2_hudc2")
 
 [node name="thumbnail" type="TextureRect" parent="container"]
 layout_mode = 2
+size_flags_vertical = 3
 expand_mode = 5
 
 [node name="character name" type="Label" parent="container"]
@@ -47,3 +49,6 @@ stat_name = "maniability"
 layout_mode = 2
 size_flags_vertical = 3
 stat_name = "trail"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

@@ -9,6 +9,7 @@ static var levels: Dictionary = {1:"res://level scenes/level1_parking/parking_st
 static var current_menu_node: String = "main menu"
 
 static var selected_characters: Array[int]
+static var player_is_bot: Array[int] = [false, true, true, true, true, true, true, true]
 
 static func _static_init() -> void:
 	loadCharacterDataFromJSON("res://gameplay scenes/characterData.json")

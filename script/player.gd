@@ -40,14 +40,13 @@ var discrete_rotation : float = false
 var placing_trail: bool = false
 
 var id: int = 0
-@export var is_bot : bool = false
-
 @export var angle : float = 0
 var speed : float = 0
 var is_on_cooldown : bool = false
 var drift_charge : float = 0
 # 1 if turn left, -1 if turn right
 var turn_direction : int = 0
+var is_bot: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -155,7 +154,7 @@ func _bot_process()->void:
 
 
 	# trail_dropped.emit(id, trail_lifespan, angle)
-	
+
 func _player_process()->void:
 	
 	if discrete_rotation:
@@ -172,19 +171,19 @@ func _player_process()->void:
 			speed = min_speed
 
 	else:
-		if Input.is_action_pressed("move_right"):
+		if Input.is_action_pressed("move_right_%d" % id):
 			turn_right()
-		if Input.is_action_pressed("move_left"):
+		if Input.is_action_pressed("move_left_%d" % id):
 			turn_left()
 		
 		speed = (max_speed + min_speed) / 2
 		
-		if Input.is_action_pressed("accelerate"):
+		if Input.is_action_pressed("accelerate_%d" % id):
 			speed = max_speed
-		if Input.is_action_pressed("decelerate"):
+		if Input.is_action_pressed("deccelerate_%d" % id):
 			speed = min_speed
 
-	if Input.is_action_pressed("drop_trail") and $trail_gauge.value > 0:
+	if Input.is_action_pressed("drop_trail_%d" % id) and $trail_gauge.value > 0:
 		place_trail()
 	elif placing_trail:
 		placing_trail = false

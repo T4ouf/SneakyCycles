@@ -48,6 +48,7 @@ func _on_launch_level() -> void:
 		
 		GlobalState.enableNode(player)
 		player.id = i
+		player.is_bot = GlobalState.player_is_bot[i]
 		player.score = 0
 		player.health = 3 # TODO
 		player.rgb_val = colors[i]

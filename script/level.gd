@@ -2,7 +2,13 @@ extends Node2D
 
 @onready var players: Array[Node] = [
 	$"player 1",
-	$"player 2"
+	$"player 2",
+	$"player 3",
+	$"player 4",
+	$"player 5",
+	$"player 6",
+	$"player 7",
+	$"player 8"
 ]
 
 @export var stage_limits: Vector2 = Vector2(1000.0, 1000.0)
@@ -51,7 +57,7 @@ func _on_launch_level() -> void:
 		player.discrete_rotation = character.discrete_rotation
 
 		player.position.x = (i % 4) * (stage_limits.x / 4) + (stage_limits.x / 8)
-		player.position.y = (i / 4.0) * (stage_limits.y / 2) + (stage_limits.y / 4)
+		player.position.y = (i / 4) * (stage_limits.y / 2) + (stage_limits.y / 4)
 		
 		player.collision_mask = 0xFF00
 		player.collision_layer = 1 << player.id

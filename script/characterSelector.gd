@@ -34,6 +34,16 @@ func _ready() -> void:
 	get_node("container/trail size stat").setup(CharacterData.trail_gauge_size_limits)
 	setCharacter(current_character_id)
 
+	focus_neighbors = [
+		focus_neighbor_left,
+		focus_neighbor_right,
+		focus_neighbor_top,
+		focus_neighbor_bottom,
+		focus_next,
+		focus_previous,
+	]
+
+
 func _gui_input(event: InputEvent) -> void:
 	if focused && event.is_action_pressed("ui_accept"):
 		$container.grab_focus()
@@ -48,15 +58,6 @@ func _on_focus_exited() -> void:
 	add_theme_stylebox_override("panel", default_stylebox)
 
 func pushFocusNeighbors() -> void:
-	focus_neighbors = [
-		focus_neighbor_left,
-		focus_neighbor_right,
-		focus_neighbor_top,
-		focus_neighbor_bottom,
-		focus_next,
-		focus_previous,
-	]
-
 	focus_neighbor_left = ""
 	focus_neighbor_right = ""
 	focus_neighbor_top = ""

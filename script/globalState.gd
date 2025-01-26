@@ -30,7 +30,7 @@ static func loadCharacterDataFromJSON(path:String) -> void:
 		for character:Variant in data_received.characters:
 			var c: CharacterData = CharacterData.new()
 			c.id = character.id
-			c.character_name = character.name
+			c.character_name = character.name.replace("_", " ")
 			c.min_speed = character.minSpeed
 			c.max_speed = character.maxSpeed
 			c.steering_max_angle = deg_to_rad(character.steeringMaxAngleDeg)

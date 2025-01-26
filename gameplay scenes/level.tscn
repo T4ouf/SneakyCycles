@@ -12,7 +12,43 @@ script = ExtResource("1_pxgui")
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
+[node name="player 3" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[node name="player 4" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[node name="player 5" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[node name="player 6" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[node name="player 7" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[node name="player 8" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
 [connection signal="trail_dropped" from="player 1" to="." method="_on_trail_dropped"]
 [connection signal="trail_end" from="player 1" to="." method="_on_trail_end"]
 [connection signal="trail_dropped" from="player 2" to="." method="_on_trail_dropped"]
 [connection signal="trail_end" from="player 2" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 3" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 3" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 4" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 4" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 5" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 5" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 6" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 6" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 7" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 7" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 8" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 8" to="." method="_on_trail_end"]

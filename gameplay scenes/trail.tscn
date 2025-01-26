@@ -1,13 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6g11qbtv13u2"]
 
 [ext_resource type="Script" path="res://script/trail.gd" id="1_kiltc"]
-[ext_resource type="Shader" path="res://gameplay scenes/trail.gdshader" id="1_ppuib"]
-[ext_resource type="Texture2D" uid="uid://bmvaqphsjle0g" path="res://art/cercle2.png" id="2_txnym"]
+[ext_resource type="Texture2D" uid="uid://b8a5nle8t5hm1" path="res://art/circle.png" id="2_cjcua"]
+[ext_resource type="Shader" path="res://script/trail.gdshader" id="2_trqmd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n8loo"]
 resource_local_to_scene = true
-shader = ExtResource("1_ppuib")
-shader_parameter/amt = 1.0
+shader = ExtResource("2_trqmd")
 shader_parameter/color = null
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kp6i2"]
@@ -25,7 +24,7 @@ one_shot = true
 z_index = 1
 material = SubResource("ShaderMaterial_n8loo")
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_txnym")
+texture = ExtResource("2_cjcua")
 region_rect = Rect2(7.42962, -0.000850677, 0.54052, 1.08104)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

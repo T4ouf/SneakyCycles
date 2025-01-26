@@ -7,6 +7,8 @@ static var current_level: int
 static var menus: Dictionary = {}
 static var current_menu_node: String = "main menu"
 
+static var selected_characters: Array[int]
+
 static func _static_init() -> void:
 	loadCharacterDataFromJSON("res://gameplay scenes/characterData.json")
 

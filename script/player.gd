@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var rgb_val : Color
 
@@ -19,19 +19,24 @@ const min_drift_charge : float = 0.3 * 2 * PI
 #	- Second : The trail can only capture if it intersects with itself
 
 signal hit
-signal trail_dropped(player:Area2D, trail_timer:int,  angle : float, color: Color)
-var screen_size : Vector2 # window size
+signal trail_dropped(player_id: int, trail_timer: int,  angle: float)
+signal trail_end(player_id: int)
+signal damaged_enemy(player_id: int, enemy_id: int)
+@onready var stage_limits : Vector2 = get_parent().stage_limits
 
 var health : int = 3
+var score : int = 0
 var min_speed : float = 3
 var max_speed : float = 6
 # var acceleration : int = 1
-var trail_lifespan : float = 2
+var trail_lifespan : int = 2000 # time before fading, in milliseconds
 # in degree
-var steering_angle : float = 100
+var steering_angle : float = deg_to_rad(100)
 var trail_gauge_size : float = 100
 var discrete_rotation : float = false
+var placing_trail: bool = false
 
+var id: int = 0
 @export var is_bot : bool = false
 
 var angle : float = 0
@@ -43,15 +48,11 @@ var turn_direction : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	screen_size  = get_viewport_rect().size
-	steering_angle = deg_to_rad(steering_angle) / 60
 	is_on_cooldown = false
 	drift_charge = 0
 	
 	$trail_gauge.max_value = trail_gauge_size
 	$trail_gauge.value = trail_gauge_size
-	#
 	
 	$recharge_cooldown.wait_time = gauge_cooldown
 	
@@ -60,8 +61,12 @@ func _ready() -> void:
 	$drift_particles.set_color(rgb_val)
 
 func advance()->void:
-	position += speed * Vector2.from_angle(angle)
-	position = position.clamp(Vector2.ZERO, screen_size) # Locks the position to a domain, here the screen dimensions
+	var movement: Vector2 = speed * Vector2.from_angle(angle)
+	var collision_info: KinematicCollision2D = move_and_collide(movement, true)
+	if collision_info != null:
+		damaged_enemy.emit(id, collision_info.get_collider().id)
+	position += movement
+	position = position.clamp(Vector2.ZERO, stage_limits) # Locks the position to a domain
 
 func turn_right()->void:
 	angle += steering_angle
@@ -85,9 +90,10 @@ func _on_recharge_cooldown_timeout()->void:
 	is_on_cooldown = false;
 
 func place_trail()->void:
-	trail_dropped.emit(self, trail_lifespan, angle, rgb_val)
+	trail_dropped.emit(id, trail_lifespan, angle)
 	$trail_gauge.value -= gauge_consumption
 	is_on_cooldown = true
+	placing_trail = true
 	$recharge_cooldown.start()
 
 func recharge_trail()->void:
@@ -99,7 +105,7 @@ func _bot_process()->void:
 	turn_right()
 	advance()
 
-	trail_dropped.emit(self, trail_lifespan, angle, rgb_val)
+	# trail_dropped.emit(id, trail_lifespan, angle)
 	
 func _player_process()->void:
 	
@@ -138,10 +144,12 @@ func _player_process()->void:
 
 	if Input.is_action_pressed("drop_trail") and $trail_gauge.value > 0:
 		place_trail()
+	elif placing_trail:
+		placing_trail = false
+		trail_end.emit(id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	if is_bot:
 		_bot_process()
 	else:

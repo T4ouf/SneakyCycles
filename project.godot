@@ -81,6 +81,25 @@ drop_trail={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player_1"
+2d_physics/layer_2="player_2"
+2d_physics/layer_3="player_3"
+2d_physics/layer_4="player_4"
+2d_physics/layer_5="player_5"
+2d_physics/layer_6="player_6"
+2d_physics/layer_7="player_7"
+2d_physics/layer_8="player_8"
+2d_physics/layer_9="trail_1"
+2d_physics/layer_10="trail_2"
+2d_physics/layer_11="trail_3"
+2d_physics/layer_12="trail_4"
+2d_physics/layer_13="trail_5"
+2d_physics/layer_14="trail_6"
+2d_physics/layer_15="trail_7"
+2d_physics/layer_16="trail_8"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

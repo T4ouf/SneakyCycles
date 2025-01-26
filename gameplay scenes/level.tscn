@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceocqq3w63cwv"]
+
+[ext_resource type="Script" path="res://script/level.gd" id="1_pxgui"]
+[ext_resource type="PackedScene" uid="uid://dhtgtu0w6mwwl" path="res://gameplay scenes/player.tscn" id="1_w1gmo"]
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_pxgui")
+
+[node name="player 1" parent="." instance=ExtResource("1_w1gmo")]
+
+[node name="player 2" parent="." instance=ExtResource("1_w1gmo")]
+rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
+is_bot = true
+
+[connection signal="trail_dropped" from="player 1" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 1" to="." method="_on_trail_end"]
+[connection signal="trail_dropped" from="player 2" to="." method="_on_trail_dropped"]
+[connection signal="trail_end" from="player 2" to="." method="_on_trail_end"]

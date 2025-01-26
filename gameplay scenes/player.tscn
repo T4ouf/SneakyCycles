@@ -1,31 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=6 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
-[ext_resource type="Texture2D" uid="uid://b3jmxckgog1lx" path="res://art/circle_gauge.png" id="3_lfero"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yslle"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Shader" path="res://script/trail.gdshader" id="3_rl8sd"]
+[ext_resource type="Texture2D" uid="uid://ct71gdelcg63k" path="res://art/gauge_small_filled.png" id="5_wymrf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao75b"]
-radius = 8.0
-height = 52.0
+radius = 20.0
+height = 84.001
 
-[node name="player" type="Area2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkibf"]
+resource_local_to_scene = true
+shader = ExtResource("3_rl8sd")
+shader_parameter/color = null
+
+[node name="player" type="CharacterBody2D"]
 position = Vector2(400, 400)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_nl34a")
-
-[node name="sprite" type="AnimatedSprite2D" parent="."]
-z_index = 3
-scale = Vector2(0.055, 0.055)
-sprite_frames = SubResource("SpriteFrames_yslle")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
@@ -34,26 +25,32 @@ shape = SubResource("CapsuleShape2D_ao75b")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="trail_gauge" type="TextureProgressBar" parent="."]
-z_index = 2
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 1768.0
-offset_bottom = 1768.0
-scale = Vector2(0.0377559, 0.0374989)
+offset_left = -68.0
+offset_top = -66.0
+offset_right = 59.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
 step = 0.1
 fill_mode = 4
-texture_under = ExtResource("3_lfero")
-texture_progress = ExtResource("3_lfero")
+texture_under = ExtResource("5_wymrf")
+texture_progress = ExtResource("5_wymrf")
 tint_under = Color(0, 0, 0, 1)
 
 [node name="recharge_cooldown" type="Timer" parent="."]
 
+[node name="invicibility_delay" type="Timer" parent="."]
+one_shot = true
+
 [node name="drift_particles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_kkibf")
 lifetime = 0.45
 spread = 12.27
 gravity = Vector2(0, 0)
 scale_amount_min = 0.01
 scale_amount_max = 0.05
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
 [connection signal="timeout" from="recharge_cooldown" to="." method="_on_recharge_cooldown_timeout"]

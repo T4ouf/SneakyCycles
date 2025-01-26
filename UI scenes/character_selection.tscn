@@ -162,3 +162,4 @@ text = "Start game"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_down" from="back button" to="back button" method="_on_button_down"]
+[connection signal="pressed" from="start game button" to="." method="_on_start_game_button_pressed"]

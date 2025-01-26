@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://kba5f07v88st"]
+[gd_scene load_steps=7 format=3 uid="uid://kba5f07v88st"]
 
 [ext_resource type="Script" path="res://script/global_scene.gd" id="1_r6sk2"]
 [ext_resource type="PackedScene" uid="uid://bwgma037dclg3" path="res://UI scenes/main_menu.tscn" id="2_mmk77"]
 [ext_resource type="PackedScene" uid="uid://c6ug1uxhdxgs5" path="res://UI scenes/how_to_play.tscn" id="3_rh3un"]
 [ext_resource type="PackedScene" uid="uid://xrarv5c84to2" path="res://UI scenes/level_selection.tscn" id="4_5gore"]
 [ext_resource type="PackedScene" uid="uid://df7maqey7el" path="res://UI scenes/character_selection.tscn" id="5_a6e5u"]
+[ext_resource type="PackedScene" uid="uid://ceocqq3w63cwv" path="res://gameplay scenes/level.tscn" id="6_yw7ov"]
 
 [node name="global scene" type="Node"]
 script = ExtResource("1_r6sk2")
@@ -16,3 +17,11 @@ script = ExtResource("1_r6sk2")
 [node name="level selection" parent="." instance=ExtResource("4_5gore")]
 
 [node name="character selection" parent="." instance=ExtResource("5_a6e5u")]
+
+[node name="level scene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="level" parent="level scene" instance=ExtResource("6_yw7ov")]
+
+[connection signal="launch_level" from="character selection" to="level scene/level" method="_on_launch_level"]

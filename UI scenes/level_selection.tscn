@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://xrarv5c84to2"]
-
+[gd_scene load_steps=6 format=3 uid="uid://xrarv5c84to2"]
 [ext_resource type="Script" path="res://script/level_selection.gd" id="1_5jfgg"]
 [ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_g4wrf"]
+[ext_resource type="Texture2D" uid="uid://mf76tp7oqpx4" path="res://art/UI/selectMenuBG.png" id="1_lfjd0"]
+[ext_resource type="Texture2D" uid="uid://cm3phlyxalp55" path="res://art/UI/selectMenu.png" id="2_3uciy"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="2_jg1v4"]
 [ext_resource type="Script" path="res://script/levelSelectionButton.gd" id="3_405s0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gr5wk"]
+orientation = 2
 
 [node name="level selection" type="Control"]
 layout_mode = 3
@@ -14,6 +18,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5jfgg")
 
+[node name="BGColor" type="MeshInstance2D" parent="."]
+z_index = -1
+scale = Vector2(3000, 3000)
+mesh = SubResource("PlaneMesh_gr5wk")
+texture = ExtResource("1_lfjd0")
+
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -21,13 +31,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = -1000.0
-offset_right = 1000.0
-offset_bottom = 1000.0
+offset_left = -233.0
+offset_top = -218.0
+offset_right = 217.0
+offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_g4wrf")
+texture = ExtResource("2_3uciy")
 
 [node name="back button" type="Button" parent="."]
 layout_mode = 0

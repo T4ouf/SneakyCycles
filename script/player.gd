@@ -22,7 +22,8 @@ signal hit
 signal trail_dropped(player_id: int, trail_timer: int,  angle: float)
 signal trail_end(player_id: int)
 signal damaged_enemy(player_id: int, enemy_id: int)
-@onready var stage_limits : Vector2 = get_parent().stage_limits
+@onready 
+var stage_limits : Vector2 = get_parent().stage_limits
 
 var health : int = 3
 var score : int = 0
@@ -56,8 +57,8 @@ func _ready() -> void:
 	
 	$recharge_cooldown.wait_time = gauge_cooldown
 	
-	$drift_particles.initial_velocity_min = 100
-	$drift_particles.initial_velocity_max = 300
+	#$drift_particles.initial_velocity_min = 100
+	#$drift_particles.initial_velocity_max = 300
 	$drift_particles.set_color(rgb_val)
 
 func advance()->void:
@@ -68,24 +69,44 @@ func advance()->void:
 	position += movement
 	position = position.clamp(Vector2.ZERO, stage_limits) # Locks the position to a domain
 
+func accelerate()->void:
+	speed = max_speed
+
+func decelerate()->void:
+	speed = min_speed
+	
+func default_speed()->void:
+	speed = (max_speed + min_speed) / 2
+
+func emit_particles()->void:
+	
+	$drift_particles.emitting = true
+	$drift_particles.direction = Vector2.from_angle(angle + turn_direction * PI/2)
+	$drift_particles.initial_velocity_min = speed * 20
+	$drift_particles.initial_velocity_max = speed * 40
+
 func turn_right()->void:
+	
+	var old_angle : float = angle
 	angle += steering_angle
 	$sprite.rotation = angle
+	$hitbox.rotation += steering_angle
 
 	drift_charge *= int(turn_direction == -1)
 	drift_charge += steering_angle
 	turn_direction = -1
-	recharge_trail()
 
 func turn_left()->void:
+	
+	var old_angle : float = angle
 	angle -= steering_angle
 	$sprite.rotation = angle
-
+	$hitbox.rotation -= steering_angle
+	
 	drift_charge *= int(turn_direction == 1)
 	drift_charge += steering_angle
 	turn_direction = 1
-	recharge_trail()
-
+	
 func _on_recharge_cooldown_timeout()->void:
 	is_on_cooldown = false;
 
@@ -100,16 +121,24 @@ func recharge_trail()->void:
 	if not is_on_cooldown and drift_charge >= min_drift_charge:
 		$trail_gauge.value += gauge_recharge
 
+#func _bot_attempt_capture(player:CharacterBody2D)->void:
+#	turn_right()
+#	#TODO
+#
+#func _bot_detect_potential_targets()->Array[CharacterBody2D]:
+#	const  get_parent().players.duplicate()
+
 func _bot_process()->void:
-	speed = (max_speed + min_speed) / 2
 	turn_right()
-	advance()
+	 #var targets = _bot_detect_potential_targets()
+	
+	#if has_target:
+	#	_bot_attempt_capture(player)
+
 
 	# trail_dropped.emit(id, trail_lifespan, angle)
 	
 func _player_process()->void:
-	
-	var old_angle : float = angle
 	
 	if discrete_rotation:
 		if Input.is_action_just_pressed("move_right"):
@@ -137,11 +166,6 @@ func _player_process()->void:
 		if Input.is_action_pressed("decelerate"):
 			speed = min_speed
 
-	advance()
-	
-	$drift_particles.direction = Vector2.from_angle(angle + turn_direction * PI/3)
-	$drift_particles.emitting = old_angle != angle
-
 	if Input.is_action_pressed("drop_trail") and $trail_gauge.value > 0:
 		place_trail()
 	elif placing_trail:
@@ -150,10 +174,18 @@ func _player_process()->void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	$drift_particles.emitting = false
+	default_speed()
+	
 	if is_bot:
 		_bot_process()
 	else:
 		_player_process()
+	
+	recharge_trail()
+	emit_particles()
+	advance()
 
 # TODO
 func _on_body_entered(body: Node2D) -> void:

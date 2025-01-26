@@ -101,6 +101,7 @@ drop_trail={
 2d_physics/layer_14="trail_6"
 2d_physics/layer_15="trail_7"
 2d_physics/layer_16="trail_8"
+2d_physics/layer_17="neutral"
 
 [rendering]
 

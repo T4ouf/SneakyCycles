@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=6 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
-[ext_resource type="Texture2D" uid="uid://cm73lifhoannf" path="res://art/cercle2.png" id="3_355xy"]
+[ext_resource type="Shader" path="res://script/trail.gdshader" id="3_rl8sd"]
 [ext_resource type="Texture2D" uid="uid://ct71gdelcg63k" path="res://art/gauge_small_filled.png" id="5_wymrf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao75b"]
 radius = 20.0
 height = 84.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkibf"]
+resource_local_to_scene = true
+shader = ExtResource("3_rl8sd")
+shader_parameter/color = null
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(400, 400)
@@ -38,8 +43,8 @@ tint_under = Color(0, 0, 0, 1)
 one_shot = true
 
 [node name="drift_particles" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_kkibf")
 lifetime = 0.45
-texture = ExtResource("3_355xy")
 spread = 12.27
 gravity = Vector2(0, 0)
 scale_amount_min = 0.01

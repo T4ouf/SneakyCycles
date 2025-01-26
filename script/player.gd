@@ -19,7 +19,7 @@ const min_drift_charge : float = 0.3 * 2 * PI
 #	- Second : The trail can only capture if it intersects with itself
 
 signal hit
-signal trail_dropped(player_id: int, trail_timer: int,  angle: float)
+signal trail_dropped(player_id: int, trail_timer: float,  angle: float)
 signal trail_end(player_id: int)
 signal damaged_enemy(player_id: int, enemy_id: int)
 @onready 
@@ -30,7 +30,7 @@ var score : int = 0
 var min_speed : float = 3
 var max_speed : float = 6
 # var acceleration : int = 1
-var trail_lifespan : int = 2000 # time before fading, in milliseconds
+var trail_lifespan : int = 5 # time before fading, in milliseconds
 # in degree
 var steering_angle : float = deg_to_rad(100)
 var trail_gauge_size : float = 100
@@ -65,7 +65,17 @@ func advance()->void:
 	var movement: Vector2 = speed * Vector2.from_angle(angle)
 	var collision_info: KinematicCollision2D = move_and_collide(movement, true)
 	if collision_info != null:
-		damaged_enemy.emit(id, collision_info.get_collider().id)
+		# TODO
+		print("info")
+		print(collision_info.get_collider().name)
+		print(collision_info.get_collider().collision_layer)
+		print(collision_info.get_collider().collision_mask)
+		print(name)
+		print(collision_layer)
+		print(collision_mask)
+		# if collision_info.get_collider() == self:
+		# 	print("Foo")
+		# damaged_enemy.emit(id, collision_info.get_collider().id)
 	position += movement
 	position = position.clamp(Vector2.ZERO, stage_limits) # Locks the position to a domain
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxa8f0kif434r"]
+
+[ext_resource type="Script" path="res://script/trail_particle.gd" id="1_f31pp"]
+[ext_resource type="Shader" path="res://script/trail_particle.gdshader" id="2_8m1en"]
+[ext_resource type="Texture2D" uid="uid://b8a5nle8t5hm1" path="res://art/circle.png" id="2_ku6pt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b075w"]
+size = Vector2(196, 192)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_urtwc"]
+shader = ExtResource("2_8m1en")
+shader_parameter/color = null
+
+[node name="trail particle" type="StaticBody2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_f31pp")
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b075w")
+debug_color = Color(0.860523, 7.70092e-07, 0.464949, 0.42)
+
+[node name="sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_urtwc")
+texture = ExtResource("2_ku6pt")
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

@@ -44,6 +44,7 @@ func _on_launch_level() -> void:
 		var player: Node = players[i]
 		var character: CharacterData = GlobalState.characters[selected_characters[i]]
 		
+		player.visible = true
 		player.id = i
 		player.score = 0
 		player.health = 3 # TODO

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwgma037dclg3"]
+[gd_scene load_steps=7 format=3 uid="uid://bwgma037dclg3"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_25axa"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="1_76j14"]
-[ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="1_gekbv"]
+[ext_resource type="Texture2D" uid="uid://baykgutfdgnh4" path="res://art/menu_background.png" id="2_4l10w"]
 [ext_resource type="FontFile" uid="uid://b73tqf2jkylwj" path="res://fonts/BamboyTrial-Regular.otf" id="4_3x5gu"]
+[ext_resource type="AudioStream" uid="uid://cfnpq0yk27m6d" path="res://audio/music/SelectScreen/selectScreen.mp3" id="5_vx36k"]
 
 [sub_resource type="Theme" id="Theme_qfxfn"]
 
@@ -26,21 +27,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = -1000.0
-offset_right = 1000.0
-offset_bottom = 1000.0
+offset_left = -730.0
+offset_top = -395.0
+offset_right = 724.0
+offset_bottom = 436.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_gekbv")
+texture = ExtResource("2_4l10w")
 
 [node name="choose level button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.418403
-anchor_top = 0.362654
-anchor_right = 0.581597
-anchor_bottom = 0.439815
+anchor_left = 0.290278
+anchor_top = 0.701235
+anchor_right = 0.453472
+anchor_bottom = 0.778396
 grow_horizontal = 2
 focus_neighbor_bottom = NodePath("../how to play button")
 focus_next = NodePath("../how to play button")
@@ -71,10 +72,10 @@ metadata/_edit_use_anchors_ = true
 [node name="how to play button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.421875
-anchor_top = 0.521605
-anchor_right = 0.578125
-anchor_bottom = 0.598765
+anchor_left = 0.542361
+anchor_top = 0.698765
+anchor_right = 0.698611
+anchor_bottom = 0.775925
 grow_horizontal = 2
 focus_neighbor_top = NodePath("../choose level button")
 focus_next = NodePath("../choose level button")
@@ -85,6 +86,11 @@ text = "How to play"
 script = ExtResource("1_76j14")
 target_scene = "how to play"
 metadata/_edit_use_anchors_ = true
+
+[node name="menuThemePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vx36k")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_down" from="choose level button" to="choose level button" method="_on_button_down"]

@@ -26,5 +26,6 @@ func _on_start_game_button_pressed() -> void:
 		$"MarginContainer/container/character 8".current_character_id
 	]
 
-	launch_level.emit()
-	GlobalState.setMenu("level scene")
+	
+	get_tree().change_scene_to_file(GlobalState.levels[GlobalState.current_level])
+

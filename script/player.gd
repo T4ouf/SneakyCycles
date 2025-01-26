@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal game_over(id:int, other_id:int);
+
 @export var rgb_val : Color
 
 # Gauge consumption speed
@@ -40,7 +42,7 @@ var placing_trail: bool = false
 var id: int = 0
 @export var is_bot : bool = false
 
-var angle : float = 0
+@export var angle : float = 0
 var speed : float = 0
 var is_on_cooldown : bool = false
 var drift_charge : float = 0
@@ -57,9 +59,10 @@ func _ready() -> void:
 	
 	$recharge_cooldown.wait_time = gauge_cooldown
 	
+	$sprite.rotation = angle
+	$hitbox.rotation = angle + PI*0.5
 	#$drift_particles.initial_velocity_min = 100
 	#$drift_particles.initial_velocity_max = 300
-	$drift_particles.set_color(rgb_val)
 
 func advance()->void:
 	var movement: Vector2 = speed * Vector2.from_angle(angle)
@@ -73,6 +76,11 @@ func advance()->void:
 		print(name)
 		print(collision_layer)
 		print(collision_mask)
+		
+		speed = 0;
+		$explosionAnimatedSprite.play("explosion")
+
+		#GlobalState.disableNode(self)
 		# if collision_info.get_collider() == self:
 		# 	print("Foo")
 		# damaged_enemy.emit(id, collision_info.get_collider().id)
@@ -200,3 +208,36 @@ func _process(delta: float) -> void:
 # TODO
 func _on_body_entered(body: Node2D) -> void:
 	hit.emit()
+
+
+func _on_visibility_changed() -> void:
+	if(visible == true):
+		
+		#$trail_gauge.get_material().set_shader_parameter("color", rgb_val)
+		var classRider:String = GlobalState.characters[GlobalState.selected_characters[id]].character_name
+
+		if(classRider == "bicycle"):
+			$drift_particles.set_color(Color("#d19b64"))
+		elif(classRider == "moped"):
+			$drift_particles.set_color(Color(0,0,0,1))
+		elif(classRider == "scooter"):
+			$drift_particles.set_color(Color(0.25,0.25,0.25, 0.7))
+		elif(classRider == "moto cross"):
+			$drift_particles.set_color(Color(0.25,0.25,0.25,1))
+		elif(classRider == "moto basic"):
+			$drift_particles.set_color(Color(0.25,0.25,0.25,1))
+		elif(classRider == "moto biker"):
+			$drift_particles.set_color(Color(0.25,0.25,0.25,1))
+		elif(classRider == "moto GP"):
+			$drift_particles.set_color(Color(0.85,0.85,0.85,0.5))
+		elif(classRider == "moto tron"):
+			$drift_particles.set_color(Color(0,0,0,0))
+
+
+
+func _on_explosion_animated_sprite_animation_finished() -> void:
+		self.visible = false;
+		queue_free()
+		get_parent().players.erase(self)
+		
+			

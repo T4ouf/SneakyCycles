@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
-	generateColorSwap("res://art/characters/5_basic_moto/char_moto.png", "res://art/colorSwapMap.bmp", Color("#fb9a99"), Color("#e31a1c"))
+	generateColorSwap("res://art/bubble/bubble.png", "res://art/colorSwapMap.bmp", Color("#fb9a99"), Color("#e31a1c"))
 	pass # Replace with function body.
 
 

@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://xrarv5c84to2"]
+[gd_scene load_steps=13 format=3 uid="uid://xrarv5c84to2"]
 
 [ext_resource type="Script" path="res://script/level_selection.gd" id="1_5jfgg"]
-[ext_resource type="Texture2D" uid="uid://mf76tp7oqpx4" path="res://art/UI/selectMenuBG.png" id="1_lfjd0"]
-[ext_resource type="Texture2D" uid="uid://cm3phlyxalp55" path="res://art/UI/selectMenu.png" id="2_3uciy"]
+[ext_resource type="Texture2D" uid="uid://bmu0yk7vgj18l" path="res://art/background.png" id="2_amj0v"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="2_jg1v4"]
+[ext_resource type="Texture2D" uid="uid://bfd71plix7l7c" path="res://art/Logo.png" id="3_1a3kl"]
 [ext_resource type="Script" path="res://script/levelSelectionButton.gd" id="3_405s0"]
+[ext_resource type="Texture2D" uid="uid://cnhj53h4geknb" path="res://art/stages/parking/levelSelectBtn.JPG" id="5_h1k8d"]
+[ext_resource type="Texture2D" uid="uid://c3e00xqlbtff7" path="res://art/stages/parking/levelSelectBtnHover.JPG" id="6_73x3r"]
+[ext_resource type="Texture2D" uid="uid://qhqir6g1unac" path="res://art/UI/levelSelectBtnHover.JPG" id="7_gpdtg"]
+[ext_resource type="FontFile" uid="uid://b73tqf2jkylwj" path="res://fonts/BamboyTrial-Regular.otf" id="8_tmltv"]
+[ext_resource type="AudioStream" uid="uid://cfnpq0yk27m6d" path="res://audio/music/SelectScreen/selectScreen.mp3" id="9_crajf"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gr5wk"]
 orientation = 2
+
+[sub_resource type="Theme" id="Theme_o8wkv"]
 
 [node name="level selection" type="Control"]
 layout_mode = 3
@@ -22,22 +29,15 @@ script = ExtResource("1_5jfgg")
 z_index = -1
 scale = Vector2(3000, 3000)
 mesh = SubResource("PlaneMesh_gr5wk")
-texture = ExtResource("1_lfjd0")
+texture = ExtResource("2_amj0v")
 
 [node name="background" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -233.0
-offset_top = -218.0
-offset_right = 217.0
-offset_bottom = 232.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_3uciy")
+layout_mode = 0
+offset_left = 295.0
+offset_top = -19.0
+offset_right = 1295.0
+offset_bottom = 981.0
+texture = ExtResource("3_1a3kl")
 
 [node name="back button" type="Button" parent="."]
 layout_mode = 0
@@ -50,19 +50,50 @@ text = "Back"
 script = ExtResource("2_jg1v4")
 target_scene = "main menu"
 
-[node name="level 1" type="Button" parent="."]
-layout_mode = 0
-anchor_left = 0.428472
-anchor_top = 0.230864
-anchor_right = 0.471528
-anchor_bottom = 0.269136
+[node name="level 1" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.494444
+anchor_top = 0.660494
+anchor_right = 0.494444
+anchor_bottom = 0.660494
+offset_left = -639.0
+offset_top = -374.0
+offset_right = 639.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
 focus_neighbor_left = NodePath("../back button")
 focus_next = NodePath("../back button")
 focus_previous = NodePath("../back button")
-text = "Level 1"
+texture_normal = ExtResource("5_h1k8d")
+texture_hover = ExtResource("6_73x3r")
+texture_focused = ExtResource("7_gpdtg")
 script = ExtResource("3_405s0")
+level_id = 1
 target_scene = "character selection"
 metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.383333
+anchor_top = 0.0444444
+anchor_right = 0.655556
+anchor_bottom = 0.117284
+theme = SubResource("Theme_o8wkv")
+theme_override_fonts/font = ExtResource("8_tmltv")
+theme_override_font_sizes/font_size = 50
+text = "Select your level"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="menuThemePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_crajf")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_down" from="back button" to="back button" method="_on_button_down"]

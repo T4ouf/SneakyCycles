@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhtgtu0w6mwwl"]
+[gd_scene load_steps=13 format=3 uid="uid://dhtgtu0w6mwwl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_nl34a"]
+[ext_resource type="Texture2D" uid="uid://cm73lifhoannf" path="res://art/cercle2.png" id="3_355xy"]
 [ext_resource type="Shader" path="res://script/trail.gdshader" id="3_rl8sd"]
+[ext_resource type="Texture2D" uid="uid://qy3ypswllcgj" path="res://art/explosion/explosion_0.png" id="5_tbj46"]
 [ext_resource type="Texture2D" uid="uid://ct71gdelcg63k" path="res://art/gauge_small_filled.png" id="5_wymrf"]
+[ext_resource type="Texture2D" uid="uid://b8dkixh0tuoc3" path="res://art/explosion/explosion_1.png" id="6_37d11"]
+[ext_resource type="Texture2D" uid="uid://dej8qbo8m58vk" path="res://art/explosion/explosion_2.png" id="7_aod6a"]
+[ext_resource type="Texture2D" uid="uid://doj5xmoecumxe" path="res://art/explosion/explosion_3.png" id="8_e3l2n"]
+[ext_resource type="Texture2D" uid="uid://b8lx5i2alsq5b" path="res://art/explosion/explosion_4.png" id="9_j7466"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao75b"]
 radius = 20.0
@@ -12,6 +18,35 @@ height = 84.001
 resource_local_to_scene = true
 shader = ExtResource("3_rl8sd")
 shader_parameter/color = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0oqrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tbj46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_37d11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aod6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_e3l2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j7466")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 15.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(400, 400)
@@ -45,6 +80,7 @@ one_shot = true
 [node name="drift_particles" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_kkibf")
 lifetime = 0.45
+texture = ExtResource("3_355xy")
 spread = 12.27
 gravity = Vector2(0, 0)
 scale_amount_min = 0.01
@@ -53,4 +89,12 @@ scale_amount_max = 0.05
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 
+[node name="explosionAnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8.00002, 3.99999)
+scale = Vector2(0.22, 0.22)
+sprite_frames = SubResource("SpriteFrames_0oqrl")
+animation = &"explosion"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="recharge_cooldown" to="." method="_on_recharge_cooldown_timeout"]
+[connection signal="animation_finished" from="explosionAnimatedSprite" to="." method="_on_explosion_animated_sprite_animation_finished"]

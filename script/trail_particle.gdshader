@@ -12,7 +12,7 @@ void vertex() {
 }
 
 void fragment() {
-	COLOR.rgb = color.rgb * circle(UV, 1, 0.2);
+	COLOR.rgb = color.rgb * circle(UV+vec2(0.5, 0.5), 1, 0.2);
 	// Called for every pixel the material is visible on.
 }
 

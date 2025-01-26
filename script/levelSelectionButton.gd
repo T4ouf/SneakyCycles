@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 @export var level_id: int
 @export var target_scene: String

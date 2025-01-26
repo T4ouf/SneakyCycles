@@ -5,6 +5,7 @@ static var characters: Array[CharacterData]
 static var current_level: int
 
 static var menus: Dictionary = {}
+static var levels: Dictionary = {1:"res://level scenes/level1_parking/parking_stage.tscn"}
 static var current_menu_node: String = "main menu"
 
 static var selected_characters: Array[int]
@@ -14,9 +15,19 @@ static func _static_init() -> void:
 
 static func setMenu(menu_name: String) -> void:
 	# var current_menu: Node = get_node(current_menu_node)
+	
+	var music_moment:float = 0.0;
+	var musicThemePlayer:AudioStreamPlayer = menus[current_menu_node].find_child("menuThemePlayer");
+	if(musicThemePlayer != null):
+		music_moment = menus[current_menu_node].find_child("menuThemePlayer").get_playback_position();
+		
 	disableNode(menus[current_menu_node])
 	current_menu_node = menu_name
 	enableNode(menus[current_menu_node])
+	
+	musicThemePlayer = menus[current_menu_node].find_child("menuThemePlayer");
+	if(musicThemePlayer != null):
+		menus[current_menu_node].find_child("menuThemePlayer").play(music_moment);
 
 static func disableNode(node: Node) -> void:
 	node.visible = false

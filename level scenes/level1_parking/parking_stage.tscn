@@ -1,15 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://db3e74rjbf8ko"]
+[gd_scene load_steps=18 format=3 uid="uid://db3e74rjbf8ko"]
 
 [ext_resource type="Texture2D" uid="uid://u0dsatpgqual" path="res://art/stages/parking/Background wo fence.png" id="1_masda"]
+[ext_resource type="Script" path="res://level scenes/level1_parking/loadStage.gd" id="1_s3dkp"]
 [ext_resource type="Texture2D" uid="uid://447w852h6b3f" path="res://art/stages/parking/bands.JPG" id="2_ni5u5"]
+[ext_resource type="Texture2D" uid="uid://x6e50hfc5ol8" path="res://art/parking_public/People1.png" id="2_qbptj"]
 [ext_resource type="Texture2D" uid="uid://7njsfyykorof" path="res://art/stages/parking/Fence .png" id="2_xrfrm"]
+[ext_resource type="Texture2D" uid="uid://koe7qkx5hwu3" path="res://art/parking_public/People2.png" id="3_1q7aj"]
+[ext_resource type="Texture2D" uid="uid://clo66qjru6db7" path="res://art/parking_public/People3.png" id="4_t36pk"]
+[ext_resource type="PackedScene" uid="uid://b3mjo3ee7fpfg" path="res://gameplay scenes/level.tscn" id="4_xeofx"]
+[ext_resource type="Texture2D" uid="uid://bwu8ovtg8neeu" path="res://art/parking_public/People4.png" id="5_4fhfa"]
+[ext_resource type="Texture2D" uid="uid://4cljulrr1jhj" path="res://art/parking_public_v2/People1V2.png" id="6_30o7a"]
+[ext_resource type="Texture2D" uid="uid://jnbs6o2gbga1" path="res://art/parking_public_v2/People2V2.png" id="7_it1qt"]
+[ext_resource type="Texture2D" uid="uid://bdew0h5wct4yh" path="res://art/parking_public_v2/People3V2.png" id="8_ajadc"]
+[ext_resource type="Texture2D" uid="uid://3meyqoo0m6v1" path="res://art/parking_public_v2/People4V2.png" id="9_tbrcs"]
+[ext_resource type="Texture2D" uid="uid://8uvxyagv1sey" path="res://art/big_chungus.jpg" id="12_p66ig"]
+[ext_resource type="AudioStream" uid="uid://2tagwe3rfcho" path="res://audio/music/level1/parkingStage_100bpm.mp3" id="15_nq6ie"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oh0b0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qbptj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1q7aj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t36pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4fhfa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqkam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_30o7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_it1qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ajadc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tbrcs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="parking" type="Node2D"]
+script = ExtResource("1_s3dkp")
 
 [node name="BackgroundWoFence" type="Sprite2D" parent="."]
 position = Vector2(819.375, 441.5)
 scale = Vector2(1.19625, 1.19625)
 texture = ExtResource("1_masda")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1218, 60)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_oh0b0")
+autoplay = "default"
+frame_progress = 0.250427
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(218, 64)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_oh0b0")
+autoplay = "default"
+frame_progress = 0.0672377
+speed_scale = 0.8
+flip_h = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(712.825, 64)
+scale = Vector2(0.362061, 0.3)
+sprite_frames = SubResource("SpriteFrames_mqkam")
+autoplay = "default"
+frame_progress = 0.352243
 
 [node name="fences" type="Node2D" parent="."]
 
@@ -57,3 +133,55 @@ texture = ExtResource("2_xrfrm")
 position = Vector2(523, 1231)
 scale = Vector2(1.34, 1.34)
 texture = ExtResource("2_xrfrm")
+
+[node name="BigChungus" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(178, 194)
+scale = Vector2(0.0991897, 0.0991897)
+texture = ExtResource("12_p66ig")
+
+[node name="level" parent="." instance=ExtResource("4_xeofx")]
+stage_limits = Vector2(2000, 2000)
+
+[node name="player 1" parent="level" index="0"]
+position = Vector2(1243, 370)
+angle = 90.0
+
+[node name="player 2" parent="level" index="1"]
+position = Vector2(1143, 370)
+angle = 90.0
+
+[node name="player 3" parent="level" index="2"]
+position = Vector2(1030, 370)
+angle = 90.0
+
+[node name="player 4" parent="level" index="3"]
+position = Vector2(919, 370)
+angle = 90.0
+
+[node name="player 5" parent="level" index="4"]
+position = Vector2(818, 370)
+angle = 90.0
+
+[node name="player 6" parent="level" index="5"]
+position = Vector2(719, 370)
+angle = 90.0
+
+[node name="player 7" parent="level" index="6"]
+position = Vector2(613, 370)
+angle = 90.0
+
+[node name="player 8" parent="level" index="7"]
+position = Vector2(494, 370)
+angle = 90.0
+
+[node name="CollisionShape2D" parent="level/wallUp" index="0"]
+position = Vector2(718, 122)
+
+[node name="musicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_nq6ie")
+autoplay = true
+
+[connection signal="launch_level" from="." to="level" method="_on_launch_level"]
+
+[editable path="level"]

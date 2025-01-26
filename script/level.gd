@@ -59,10 +59,10 @@ func _on_launch_level() -> void:
 		player.steering_angle = character.steering_max_angle / 60
 		player.discrete_rotation = character.discrete_rotation
 
-		player.position.x = (i % 4) * (stage_limits.x / 4) + (stage_limits.x / 8)
-		player.position.y = (i / 4) * (stage_limits.y / 2) + (stage_limits.y / 4)
+		#player.position.x = (i % 4) * (stage_limits.x / 4) + (stage_limits.x / 8)
+		#player.position.y = (i / 4) * (stage_limits.y / 2) + (stage_limits.y / 4)
 		
-		player.collision_mask = 0x0000FFFF & ~(0xFFFF & (1 << player.id)) 
+		player.collision_mask = 0x0001FFFF & ~(0xFFFF & (1 << player.id)) 
 		player.collision_layer = 1 << player.id
 
 
@@ -72,6 +72,7 @@ func _on_trail_dropped(player_id: int, trail_timer: float, _angle: float) -> voi
 	var player_position: Vector2 = players[player_id].position
 
 	var trail: Node = trail_scene.instantiate()
+	trail.get_child(2).get_material().set_shader_parameter("color", colors[player_id])
 	trail.position = player_position
 	trail.get_child(0).wait_time = trail_timer
 	trail.id = player_id

@@ -236,8 +236,9 @@ func _on_visibility_changed() -> void:
 
 
 func _on_explosion_animated_sprite_animation_finished() -> void:
-		self.visible = false
-		queue_free()
-		get_parent().players.erase(self)
+		GlobalState.disableNode(self)
+		# self.visible = false
+		# queue_free()
+		# get_parent().players.erase(self)
 		
 			

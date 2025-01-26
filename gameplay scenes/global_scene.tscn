@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ug1uxhdxgs5" path="res://UI scenes/how_to_play.tscn" id="3_rh3un"]
 [ext_resource type="PackedScene" uid="uid://xrarv5c84to2" path="res://UI scenes/level_selection.tscn" id="4_5gore"]
 [ext_resource type="PackedScene" uid="uid://df7maqey7el" path="res://UI scenes/character_selection.tscn" id="5_a6e5u"]
-[ext_resource type="PackedScene" uid="uid://ceocqq3w63cwv" path="res://gameplay scenes/level.tscn" id="6_yw7ov"]
+[ext_resource type="PackedScene" uid="uid://b3mjo3ee7fpfg" path="res://gameplay scenes/level.tscn" id="6_yw7ov"]
 
 [node name="global scene" type="Node"]
 script = ExtResource("1_r6sk2")

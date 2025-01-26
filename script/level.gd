@@ -63,7 +63,7 @@ func _on_launch_level() -> void:
 		#player.position.x = (i % 4) * (stage_limits.x / 4) + (stage_limits.x / 8)
 		#player.position.y = (i / 4) * (stage_limits.y / 2) + (stage_limits.y / 4)
 		
-		player.collision_mask = 0x0001FFFF & ~(0xFFFF & (1 << player.id)) 
+		player.collision_mask = (0x0001FFFF & ~(0xFFFFFFFF & (1 << player.id))) & ~(0xFFFFFFFF & (1 << (8 + player.id)))
 		player.collision_layer = 1 << player.id
 
 

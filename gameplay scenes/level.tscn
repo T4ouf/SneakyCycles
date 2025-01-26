@@ -7,32 +7,40 @@
 script = ExtResource("1_pxgui")
 
 [node name="player 1" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 
 [node name="player 2" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 3" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 4" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 5" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 6" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 7" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 
 [node name="player 8" parent="." instance=ExtResource("1_w1gmo")]
+visible = false
 rgb_val = Color(0.411244, 0.375112, 0.132779, 1)
 is_bot = true
 

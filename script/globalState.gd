@@ -14,9 +14,17 @@ static func _static_init() -> void:
 
 static func setMenu(menu_name: String) -> void:
 	# var current_menu: Node = get_node(current_menu_node)
-	menus[current_menu_node].visible = false
+	disableNode(menus[current_menu_node])
 	current_menu_node = menu_name
-	menus[current_menu_node].visible = true
+	enableNode(menus[current_menu_node])
+
+static func disableNode(node: Node) -> void:
+	node.visible = false
+	node.process_mode = PROCESS_MODE_DISABLED
+
+static func enableNode(node: Node) -> void:
+	node.visible = true
+	node.process_mode = PROCESS_MODE_INHERIT
 
 static func loadCharacterDataFromJSON(path:String) -> void:
 	var file:FileAccess = FileAccess.open(path, FileAccess.READ)

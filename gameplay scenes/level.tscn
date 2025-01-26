@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceocqq3w63cwv"]
+[gd_scene load_steps=5 format=3 uid="uid://b3mjo3ee7fpfg"]
 
 [ext_resource type="Script" path="res://script/level.gd" id="1_pxgui"]
 [ext_resource type="PackedScene" uid="uid://dhtgtu0w6mwwl" path="res://gameplay scenes/player.tscn" id="1_w1gmo"]
-[ext_resource type="PackedScene" uid="uid://cxa8f0kif434r" path="res://gameplay scenes/trail_particle.tscn" id="2_pq6g3"]
+[ext_resource type="PackedScene" uid="uid://bmdxvubcm7s5b" path="res://gameplay scenes/trail_particle.tscn" id="2_pq6g3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs57p"]
 size = Vector2(1458, 20)

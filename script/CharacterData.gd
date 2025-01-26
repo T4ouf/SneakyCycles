@@ -8,6 +8,7 @@ class_name CharacterData extends Node
 @export var trail_gauge_size: float = 200
 @export var discrete_rotation: bool = false
 var chromas: Array[Texture2D] = []
+var sfxDir : String = ""
 
 static var speed_limits: Vector2i
 static var min_speed_limits: Vector2i

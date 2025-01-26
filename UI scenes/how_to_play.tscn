@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6ug1uxhdxgs5"]
 
 [ext_resource type="Script" path="res://script/how_to_play.gd" id="1_2umlv"]
+[ext_resource type="Texture2D" uid="uid://cdkpg81nr8k5" path="res://art/menu_background_final.png" id="2_r6g0u"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="2_sf5de"]
-[ext_resource type="Texture2D" uid="uid://baykgutfdgnh4" path="res://art/menu_background.png" id="2_yv0j0"]
 [ext_resource type="FontFile" uid="uid://b73tqf2jkylwj" path="res://fonts/BamboyTrial-Regular.otf" id="4_l1gfq"]
 [ext_resource type="AudioStream" uid="uid://cfnpq0yk27m6d" path="res://audio/music/SelectScreen/selectScreen.mp3" id="4_qs4e1"]
 
@@ -32,7 +32,7 @@ offset_right = 725.0
 offset_bottom = 419.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_yv0j0")
+texture = ExtResource("2_r6g0u")
 
 [node name="back button" type="Button" parent="."]
 layout_mode = 0

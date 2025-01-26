@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_25axa"]
 [ext_resource type="Script" path="res://script/changeSceneButton.gd" id="1_76j14"]
-[ext_resource type="Texture2D" uid="uid://baykgutfdgnh4" path="res://art/menu_background.png" id="2_4l10w"]
+[ext_resource type="Texture2D" uid="uid://cdkpg81nr8k5" path="res://art/menu_background_final.png" id="2_xmcy7"]
 [ext_resource type="FontFile" uid="uid://b73tqf2jkylwj" path="res://fonts/BamboyTrial-Regular.otf" id="4_3x5gu"]
 [ext_resource type="AudioStream" uid="uid://cfnpq0yk27m6d" path="res://audio/music/SelectScreen/selectScreen.mp3" id="5_vx36k"]
 
@@ -27,13 +27,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -730.0
-offset_top = -395.0
-offset_right = 724.0
-offset_bottom = 436.0
+offset_left = -730.125
+offset_top = -409.0
+offset_right = 724.125
+offset_bottom = 422.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_4l10w")
+texture = ExtResource("2_xmcy7")
+expand_mode = 3
 
 [node name="choose level button" type="Button" parent="."]
 layout_mode = 1

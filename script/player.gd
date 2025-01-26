@@ -32,7 +32,7 @@ var score : int = 0
 var min_speed : float = 3
 var max_speed : float = 6
 # var acceleration : int = 1
-var trail_lifespan : int = 5 # time before fading, in milliseconds
+var trail_lifespan : int = 2.5 # time before fading, in seconds
 # in degree
 var steering_angle : float = deg_to_rad(100)
 var trail_gauge_size : float = 100
@@ -68,15 +68,16 @@ func advance()->void:
 	var collision_info: KinematicCollision2D = move_and_collide(movement, true)
 	if collision_info != null:
 		# TODO
-		print("info")
-		print(collision_info.get_collider().name)
-		print(collision_info.get_collider().collision_layer)
-		print(collision_info.get_collider().collision_mask)
-		print(name)
-		print(collision_layer)
-		print(collision_mask)
+		#print("info")
+		#print(collision_info.get_collider().name)
+		#print(collision_info.get_collider().collision_layer)
+		#print(collision_info.get_collider().collision_mask)
+		#print(name)
+		#print(collision_layer)
+		#print(collision_mask)
 		
-		speed = 0;
+		speed = 0.0;
+		$explosion.play(0.0);
 		$explosionAnimatedSprite.play("explosion")
 
 		#GlobalState.disableNode(self)
@@ -235,7 +236,7 @@ func _on_visibility_changed() -> void:
 
 
 func _on_explosion_animated_sprite_animation_finished() -> void:
-		self.visible = false;
+		self.visible = false
 		queue_free()
 		get_parent().players.erase(self)
 		

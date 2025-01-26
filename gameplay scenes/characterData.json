@@ -9,7 +9,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 5000,
 			"textureDir": "art/characters/1_bike",
-			"textureName": "bike"
+			"textureName": "bike",
+			"sfxDir":"audio/sfx/1_bicycle"
 		},
 		{
 			"id":1,
@@ -20,7 +21,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 3000,
 			"textureDir": "art/characters/2_moped",
-			"textureName": "moped"
+			"textureName": "moped",
+			"sfxDir":"audio/sfx/2_moped"
 		},
 		{
 			"id":2,
@@ -31,7 +33,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 3000,
 			"textureDir": "art/characters/3_scooter",
-			"textureName": "scooter"
+			"textureName": "scooter",
+			"sfxDir":"audio/sfx/3_scooter"
 		},
 		{
 			"id":3,
@@ -42,7 +45,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 3000,
 			"textureDir": "art/characters/4_moto_cross",
-			"textureName": "moto_cross"
+			"textureName": "moto_cross",
+			"sfxDir":"audio/sfx/4_motocross"
 		},
 		{
 			"id":4,
@@ -53,7 +57,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 3000,
 			"textureDir": "art/characters/5_basic_moto",
-			"textureName": "moto"
+			"textureName": "moto",
+			"sfxDir":"audio/sfx/5_moto_basic"
 		},
 		{
 			"id":5,
@@ -64,7 +69,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 5000,
 			"textureDir": "art/characters/6_moto_biker",
-			"textureName": "moto_biker"
+			"textureName": "moto_biker",
+			"sfxDir":"audio/sfx/6_moto_biker"
 		},
 		{
 			"id":6,
@@ -75,7 +81,8 @@
 			"discreteRotation": false,
 			"trailGaugeSize" : 2000,
 			"textureDir": "art/characters/7_moto_gp",
-			"textureName": "moto_gp"
+			"textureName": "moto_gp",
+			"sfxDir":"audio/sfx/7_motoGP"
 		},
 		{
 			"id":7,
@@ -83,10 +90,11 @@
 			"minSpeed": 20,
 			"maxSpeed": 30,
 			"steeringMaxAngleDeg":90,
-			"discreteRotation": true,
+			"discreteRotation": false,
 			"trailGaugeSize" : 3000,
 			"textureDir": "art/characters/8_moto_tron",
-			"textureName": "moto_tron"
+			"textureName": "moto_tron",
+			"sfxDir":"audio/sfx/8_moto_tron"
 		}
 	]
 }

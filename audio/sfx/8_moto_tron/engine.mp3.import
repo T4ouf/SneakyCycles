@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/engine.mp3-1465a805112dca2027c438a2e573fff1.m
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
